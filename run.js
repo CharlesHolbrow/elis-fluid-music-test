@@ -8,7 +8,7 @@ const path = require('path')
 // supply info about the audio file to the `FluidAudioFile` constructor. At
 // minimum you should supply a `.path` and a `info.duration`, for example:
 // ```
-// audioFile = new fluid.techniques.AudioFile({ path: './yea.wav', info: { duration: 1} })
+// audioFile = new fluid.techniques.AudioFile({ path: '/yea.wav', info: { duration: 1} })
 // ```
 // In practice, I typically auto-generate AudioFile constructors using the
 // `afactory` utility. This is a good approach when you know what files you want
@@ -87,7 +87,8 @@ async function run() {
   await session.saveAsReaperFile('result.RPP')
 
   // To render an audio file, the cybr server needs to be running. Download a
-  // release, or compile from https://github.com/fluid-music/cybr
+  // release, or compile from https://github.com/fluid-music/cybr, then
+  // `$ cybr -f`
   await session.sendToServer()
 
   // Ask the server to render the result

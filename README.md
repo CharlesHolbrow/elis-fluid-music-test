@@ -6,7 +6,7 @@ First make sure that you have `cybr` in your `$PATH`. You can [compile from sour
 cybr -f
 ```
 
-Then execute `run.js` from this repo
+Leave the `cybr` server running, and execute `run.js` from this repo in a new terminal tab:
 
 ```sh
 git clone git@github.com:CharlesHolbrow/elis-fluid-music-test
@@ -20,4 +20,5 @@ This should generate two files
 1. `result.RPP` which can be opened in Reaper
 2. `result.wav`
 
-See [./run.js] for details of how this works
+See [./run.js](./run.js) for details.
+
