@@ -1,0 +1,17 @@
+{
+  "name": "elis-fluid-music-test",
+  "version": "0.0.1",
+  "description": "test eils mix, created with fluid music",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fluid-music"
+  ],
+  "author": "Charles Holbrow",
+  "license": "ISC",
+  "dependencies": {
+    "fluid-music": "^0.9.6-beta.0"
+  }
+}
