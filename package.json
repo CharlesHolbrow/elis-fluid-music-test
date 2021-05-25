@@ -12,6 +12,6 @@
   "author": "Charles Holbrow",
   "license": "ISC",
   "dependencies": {
-    "fluid-music": "^0.9.6-beta.0"
+    "fluid-music": "^0.9.6-beta.1"
   }
 }

@@ -1,5 +1,6 @@
-const fluid = require('fluid-music')
+const fs = require('fs/promises')
 const path = require('path')
+const fluid = require('fluid-music')
 
 // audio-files.js was auto-generated with the `afactory` CLI utility that you
 // can install with `$ npm i -g @fluid-music/utils`. The main fluid-music
@@ -91,10 +92,29 @@ async function run() {
   // `$ cybr -f`
   await session.sendToServer()
 
-  // Ask the server to render the result
-  const client = new fluid.Client()
-  const outputFileName = path.join(__dirname, 'result.wav')
-  await client.send(fluid.cybr.global.save(outputFileName))
+  // Create a cybr client. Effectively just a TCP connection.
+  const client = new fluid.Client({timeout: 30000})
+  client.connect(true) // true = keep the connection open until .close()
+
+  try {
+    // print a warning message if we connect to a version of cybr that does not
+    // support requestRenderedWavFile()
+    await client.send(fluid.cybr.global.version('^0.3.2'))
+
+    // Ask the server to render the results
+    const result = await client.send(fluid.cybr.global.requestRenderedWavFile())
+    // Unfortunately, the result object is not well documented. It gets its
+    // shape from the `osc-min` npm package
+    const [error, msg, data] = result.args
+    if (error.value) throw new Error(msg.value)
+    else console.log(msg.value)
+
+    // Write the results to a client-side file
+    const outFileName = path.join(__dirname, 'client-result.wav')
+    await fs.writeFile(outFileName, data.value)
+  } finally {
+    client.close()
+  }
 }
 
 run()
