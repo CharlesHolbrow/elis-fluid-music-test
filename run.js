@@ -94,7 +94,7 @@ async function run() {
 
   // Create a cybr client. Effectively just a TCP connection.
   const client = new fluid.Client({timeout: 30000})
-  client.connect(true) // true = keep the connection open until .close()
+  await client.connect(true) // true = keep the connection open until .close()
 
   try {
     // print a warning message if we connect to a version of cybr that does not
